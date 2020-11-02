@@ -3,11 +3,11 @@
 
 ## Configurations
 Before building the jar file you need to 
-### Properties file
+- ### Properties file
 The Google Ads propeties contains the developer token, credentials etc. You need to move your ads properties to src/main/resources. Set the  `propertiesFileName` variable in src/main/java/com/google/ads/googleads/examples/remarketing/GoogleAdsUtil.java  to "src/main/resources/\<your-property-filename\>"
 
 
-### hadoop home
+- ### hadoop home
 Change the Hadoop home otherwise you will get the "Could not locate executable null\bin\winutils.exe in the Hadoop binaries." error. 
 In the main() method of src/main/java/com/google/ads/googleads/examples/remarketing/AddCustomerMatchUserListOptimized.java modify this statement, set it to your hadoop home:
 `System.setProperty("hadoop.home.dir", "XXXXXXXXXXXXXXXXXX");`
