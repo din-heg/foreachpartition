@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sony.sie.kamaji</groupId>
+    <artifactId>google-ads-case-foreachpartition</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.20201023215202</version>
+    <name>google-ads-case-foreachpartition</name>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+        <maven.resources.version>3.0.2</maven.resources.version>
+        <version.timestamp>${maven.build.timestamp}</version.timestamp>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <buildDirectory>${project.basedir}/target</buildDirectory>
+        <appShortName>google-ads-case-foreachpartition</appShortName>
+        <grpc.version>1.28.0</grpc.version>
+        <scala.tools.version>2.11</scala.tools.version>
+        <scala.version>2.11.12</scala.version>
+        <spark.version>2.4.4</spark.version>
+        <dockerfile.maven.version>1.4.0</dockerfile.maven.version>
+        <akka.http.version>10.1.12</akka.http.version>
+        <akka.version>2.5.31</akka.version>
+    </properties>
+    <dependencies>
+<!-- 
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-services</artifactId>
+            <version>${grpc.version}</version>
+        </dependency>
+        
+        
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.2-jre</version> 
+        </dependency> -->          
+<!-- Changed from 27.1-jre to 28.2-jre -->
+
+
+<dependency>
+    <groupId>io.grpc</groupId>
+    <artifactId>grpc-protobuf</artifactId>
+    <version>1.33.0</version>
+    <scope>provided</scope> 
+</dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${scala.tools.version}</artifactId>
+            <version>${spark.version}</version>
+            <!-- <scope>provided</scope>  -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${scala.tools.version}</artifactId>
+            <version>${spark.version}</version>
+            <!-- <scope>provided</scope>  -->
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.11</artifactId>
+            <version>3.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.api-ads</groupId>
+            <artifactId>google-ads</artifactId>
+            <version>9.0.0</version>
+<!-- 
+                <exclusions>
+		     	<exclusion>
+		     		<groupId>io.grpc</groupId>
+		     		<artifactId>grpc-core</artifactId>
+		     	</exclusion>
+		     	<exclusion>
+		     		<groupId>io.grpc</groupId>
+		     		<artifactId>grpc-protobuf-lite</artifactId>
+		     	</exclusion>
+		     	<exclusion>
+		     		<groupId>io.grpc</groupId>
+		     		<artifactId>grpc-stub</artifactId>
+		     	</exclusion>
+		     	<exclusion>
+		     		<groupId>io.grpc</groupId>
+		     		<artifactId>grpc-context</artifactId>
+		     	</exclusion>
+		     	<exclusion>
+		     		<groupId>io.grpc</groupId>
+		     		<artifactId>grpc-grpclb</artifactId>
+		     	</exclusion>
+		     	<exclusion>
+		     		<groupId>io.grpc</groupId>
+		     		<artifactId>grpc-api</artifactId>
+		     	</exclusion>
+		     	<exclusion>
+		     		<groupId>io.grpc</groupId>
+		     		<artifactId>grpc-protobuf</artifactId>
+		     	</exclusion>
+		     </exclusions>
+ -->		          
+		</dependency>
+        <dependency>
+           <groupId>com.beust</groupId>
+           <artifactId>jcommander</artifactId>
+           <version>1.72</version>
+        </dependency>
+       <dependency>
+          <groupId>org.javatuples</groupId>
+          <artifactId>javatuples</artifactId>
+          <version>1.2</version>
+       </dependency>
+        <dependency>
+           <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.13.0</version>
+        </dependency>
+    </dependencies>    
+    <build>
+        <directory>${buildDirectory}</directory>
+        <finalName>${finalName}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/scala</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+
+
+        <plugin>
+            <groupId>org.scala-tools</groupId>
+            <artifactId>maven-scala-plugin</artifactId>
+            <version>2.15.2</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>compile</goal>
+                        <goal>testCompile</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.13</version>
+            <configuration>
+                <reuseForks>true</reuseForks>
+                <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>2.8.2</version>
+        </plugin>
+
+       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+         <!--         <version>3.2.4</version> -->
+         <version>3.1.1</version> 
+        <executions>
+          <execution>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+              </transformers>              
+               <filters>
+            <filter>
+              <artifact>*:*</artifact>
+              <excludes>
+                <exclude>META-INF/*.SF</exclude>
+                <exclude>META-INF/*.DSA</exclude>
+                <exclude>META-INF/*.RSA</exclude>
+              </excludes>
+            </filter>
+          </filters>
+              
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+        </plugins>
+    </build>
+</project>
