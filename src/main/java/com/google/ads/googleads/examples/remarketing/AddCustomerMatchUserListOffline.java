@@ -135,10 +135,10 @@ public class AddCustomerMatchUserListOffline  implements java.io.Serializable {
   
    public void runForEachPartition(Dataset<Row> dataset) {	  
 	  GoogleAdsClient  googleAdsClient = GoogleAdsUtil.getGoogleAdsClient();
-	  Long loginCustomerId             = googleAdsClient.getLoginCustomerId();  
+	  long loginCustomerId             = googleAdsClient.getLoginCustomerId();  
       String userListResourceName      = createCustomerMatchUserList(googleAdsClient, loginCustomerId);
 	 
-	  dataset.foreachPartition(itr -> buildOfflineUserDataJobOperations(loginCustomerId, userListResourceName, itr));
+	  dataset.foreachPartition(itr -> buildOfflineUserDataJobOperations(loginCustomerId, userListResourceName, itr)); 
 	  logger.info("Completed foreachPartition");           
    }
   

@@ -62,7 +62,6 @@ public class TestData {
 			         .option("header", "true")
 			         .option("delimiter", ",")
 			         .option("escape", "\"")
-			         //.load("src/main/resources/customer_contact_2.csv");
 	                 .load("src/main/resources/customer_contact_10000.csv");
 	  
 	  dataset.printSchema();

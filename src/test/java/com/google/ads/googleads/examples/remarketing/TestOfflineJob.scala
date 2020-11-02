@@ -1,30 +1,17 @@
-package com.google.ads.googleads.examples.remarketing;
+package com.google.ads.googleads.examples.remarketing
  
 
 
 import scala.collection.JavaConverters._
-
 import org.apache.logging.log4j.{ LogManager, Logger }
-
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.apache.spark.sql.Dataset
-import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.Row
-import org.apache.spark.sql.RowFactory
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.types.DataTypes
-import org.apache.spark.sql.types.StructType
-
-import org.apache.spark.api.java.JavaSparkContext
-import org.apache.spark.api.java.JavaRDD
 import org.apache.spark.SparkConf
-
-
-import com.google.ads.googleads.v5.services.{OfflineUserDataJobServiceClient,
-                                             OfflineUserDataJobOperation,
-                                             AddOfflineUserDataJobOperationsRequest}
-import com.google.protobuf.BoolValue;
+import com.google.ads.googleads.v5.services.OfflineUserDataJobOperation
+import scala.Iterator
 
 
 
